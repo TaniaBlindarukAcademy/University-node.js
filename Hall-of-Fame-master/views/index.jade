@@ -1,0 +1,171 @@
+extends layout
+append style
+    link(href='/bower_components/Materialize/bin/materialize.css', type="text/css", rel="stylesheet")
+block body
+    div.leaderbord
+        div.navbar
+            nav.menu-smint.black
+                div.nav-wrapper.container.fixed
+                    a.top-name.subNavBtn(href='#sectionTop') Кращі студенти факультету ІКТ
+                    sectionTeacher
+                    ul.right
+                        -for studentsOneGroup, i in students
+                            li
+                                a.subNavBtn(href='#section#{i}') #{ i } курс
+        div.top-section.sectionTop
+            h1.top-name Кращі студенти факультету ІКТ
+            div.row.valign-wrapper-bottom.header-row
+                div.col.s12.m4.center
+                    canvas#barChart( height="450",width="600")
+                    div#barLegend
+                div.col.s12.m4.valign
+                    h3.center.description.valign Студенти, що мають середній бал 5.0 за другу сесію 2015-2016р
+                    div.center
+                        div.col.s4
+                            img(src='/images/0n.jpg').top-label-img
+                            h6 0 пропущених пар
+                        div.col.s4
+                            img(src='/images/headman.jpg').top-label-img
+                            h6 Староста
+                        div.col.s4
+                            img(src='/images/20n.jpg').top-label-img
+                            h6 20 і більше пропущених пар
+                div.col.s12.m4.center
+                    canvas#chart-area(width="400",height="400")
+            div.row.valign-wrapper.header-row.center
+                div.col.s8.m8
+                    div.col.s2
+                        img(src='/images/badges/arsehole.jpg').top-label-img
+                        h6 Намагався сподобатися викладачу!
+                    div.col.s2
+                        img(src='/images/badges/charisma.jpg').top-label-img
+                        h6 Харизматичний!
+                    div.col.s2
+                        img(src='/images/badges/more.jpg').top-label-img
+                        h6 Потрібно більше таких студентів!
+                    div.col.s2
+                        img(src='/images/badges/positive.jpg').top-label-img
+                        h6 Позитивний!
+                    div.col.s2
+                        img(src='/images/badges/responsible.jpg').top-label-img
+                        h6 Відповідальний!
+                    div.col.s2
+                        img(src='/images/badges/talent.jpg').top-label-img
+                        h6 Талановитий!
+        -for studentsOneGroup, i in students
+            div.course(class='section#{i}')
+                h1.center #{ i} курс
+                div.row.students-items
+                    -for student, i in studentsOneGroup
+                        div.col.s12.m2
+                            div.card
+                                -var div = student.link ? "a" : "div"
+                                #{div}.student-card(href='#{student.link}',target='_blank')
+                                    div.label-wrapper
+                                        if(student.headman)
+                                            div(title='Староста').headman.label
+                                        if(student.n == 0)
+                                            div(title='#{block.getTextForSkipLessons(student.n)}').n0.label
+                                        else if(student.n > 19)
+                                            div(title='#{block.getTextForSkipLessons(student.n)}').n20.label
+                                        if(student.badges.responsible)
+                                            div(title='#{block.getTextForResponsible(student.male)}').responsible.label
+                                        if(student.badges.talent)
+                                            div(title='#{block.getTextForTalent(student.male)}').talent.label
+                                        if(student.badges.positive)
+                                            div(title='#{block.getTextForPositive(student.male)}').positive.label
+                                        if(student.badges.charisma)
+                                            div(title='#{block.getTextForCharisma(student.male)}').charisma.label
+                                        if(student.badges.more)
+                                            div(title='Потрібно більше таких студентів!').more.label
+                                        if(student.badges.arsehole)
+                                            div(title='#{block.getTextForArsehole(student.male)}').arsehole.label
+                                    div.card-image
+                                        div.students-item
+                                            div.photo(style="background:url('#{block.getStudentPhoto(student)}') no-repeat center top / cover")
+                                    div.black-line
+                                    div.students-item-info
+                                        div.students-item-name #{student.name}
+                                        div.students-item-description Група #{student.group.title+' '}
+                                        div
+                                            -var classs = (student.n == 0) ? 'good-label' : (student.n >19 ? 'bad-label' : null);
+                                            span(class='#{classs}') #{block.getTextForSkipLessons(student.n)}
+                                        if(student.headman)
+                                            div.good-label Староста
+
+
+append js
+    script(type='text/javascript' src="/bower_components/jquery/dist/jquery.js")
+    script(type='text/javascript' src="/vendor/smint/js/jquery.smint.js")
+    script(type='text/javascript').
+        $(document).ready( function() {
+            $('.menu-smint').smint({
+                'scrollSpeed' : 500
+            });
+        });
+    script(type='text/javascript' src="/bower_components/Chart.js/Chart.min.js")
+    script(type='text/javascript').
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-73418436-1', 'auto');
+        ga('set', 'userId', '#{sessionId}');
+        ga('send', 'pageview');
+
+    script(type='text/javascript').
+        var pieData = JSON.stringify(!{chart});
+        pieData = JSON.parse(pieData)
+
+        var datasets = JSON.stringify(!{speciality});
+        datasets = JSON.parse(datasets);
+        var barChartData = {
+            labels: ["Остання сесія"],
+            datasets: datasets
+        }
+        window.onload = function () {
+            var ctx = document.getElementById("chart-area").getContext("2d");
+            window.myPie = new Chart(ctx).Pie(pieData,{
+                tooltipEvents: [],
+                onAnimationComplete: function() {
+                    this.showTooltip(this.segments, true);
+                },
+                tooltipTemplate: "<%= label %> : <%= (value * 100 / #{fullStudentCount}).toFixed(2)*1 %> %",
+                responsive: true
+            });
+
+            var ctx1 = document.getElementById("barChart").getContext("2d");
+            window.myBar = new Chart(ctx1).Bar(barChartData, {
+                barShowStroke: true,
+                responsive: true,
+                legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+            });
+            $('#barLegend').append(window.myBar.generateLegend());
+
+        }
+    script(type='text/javascript').
+        var reformalOptions = {
+            project_id: 972005,
+            project_host: "halloffame.reformal.ru",
+            tab_orientation: "right",
+            tab_indent: "50%",
+            tab_bg_color: "#292421",
+            tab_border_color: "#FFFFFF",
+            tab_image_url: "http://tab.reformal.ru/T9GC0LfRi9Cy0Ysg0Lgg0L%252FRgNC10LTQu9C%252B0LbQtdC90LjRjw==/FFFFFF/a08a7c60392f68cb33f77d4f56cf8c6f/right/1/tab.png",
+            tab_border_width: 2
+            };
+
+            (function() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript'; script.async = true;
+            script.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'media.reformal.ru/widgets/v3/reformal.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+            })();

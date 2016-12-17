@@ -1,0 +1,286 @@
+
+body {
+    overflow: auto;
+    min-width: 765px;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Serif','PT Serif1', serif !important;
+    font-weight: bold !important;
+}
+#barChart,#chart-area{
+    padding: 10px;
+    max-width: 400px;
+    max-height: 400px;
+}
+body {
+    background-color: #ccc;
+    font-family: 'Roboto', sans-serif !important;
+}
+.course{
+    border-bottom: 5px dashed white;
+}
+.top-menu{
+    text-align: center;
+}
+.img.headman{
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+.top-section{
+    background-color: white;
+    width: 100%;
+}
+h1.top-name {
+    /*text-transform: uppercase;*/
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 0;
+}
+@media only screen and (min-width : 1100px) {
+    .container {
+        width: 98% !important;
+    }
+}
+@media only screen and (max-width : 960px) {
+    .students-items.row > .col.s12.m2{
+        width: 25%;
+    }
+}
+@media only screen and (max-width : 640px) {
+    .students-items.row > .col.s12.m2{
+        width: 50%;
+    }
+}
+
+.students-items > *{
+    display: flex;
+    margin-left: 0 !important;
+}
+.students-items {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.students-item-wrapper{
+    margin-bottom: 5px;
+    margin-left: 0 !important;
+    padding: 0 5px !important;
+}
+.students-items .card{
+    width: 100%;
+}
+.students-item {
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+    text-align: center;
+    margin-left: 0 !important;
+}
+.students-item::before{
+    content: "";
+    display: block;
+    padding-top: 100% !important;
+}
+.card .card-image div.photo{
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.students-item-info {
+    position: relative !important;
+    z-index: 1000;
+    line-height: 1.3;
+    padding: 1px 5px;
+    text-align: center;
+    background-color: white;
+    color: #666 !important;
+    padding-bottom: 5px;
+
+}
+.card > a:hover{
+    text-decoration: underline;
+    color: #000000 !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4) !important; /* Параметры тени */
+
+}
+.card > a:hover .students-item-info{
+    color: #000000 !important;
+}
+.students-item-name {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+}
+.card .student-card div.label{
+    width: 30px;
+    height: 30px;
+    display: inline-block ;
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: top;
+}
+.card .student-card div.headman{
+    background: url("../images/headman.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+
+}
+.card .student-card div.n0{
+    background: url("../images/0n.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+.card .student-card div.n20{
+    background: url("../images/20n.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.responsible{
+    background: url("../images/badges/responsible.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.talent{
+    background: url("../images/badges/talent.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.positive{
+    background: url("../images/badges/positive.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.charisma{
+    background: url("../images/badges/charisma.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.more{
+    background: url("../images/badges/more.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.card .student-card div.arsehole{
+    background: url("../images/badges/arsehole.jpg");
+    background-size: 34px 34px;
+    background-position: -2px -2px;
+}
+
+.students-item-description{
+    color: #000000;
+}
+.student-card{
+    position: relative;
+}
+.cos-show-more {
+    height: 4rem;
+    border: 0.2rem solid #222222;
+    box-sizing: border-box;
+    padding: 0 3rem;
+    text-transform: uppercase;
+    background: transparent;
+    margin: 5rem auto 6rem;
+    display: block;
+    border-radius: 2rem;
+    outline: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #222222
+}
+.black-line{
+    width: 100%;
+    height: 5px;
+    background-color: #000000;
+}
+.top-section{
+    background-color: white;
+}
+.valign-wrapper-bottom{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: flex-end;
+}
+.valign-wrapper-bottom .valign{
+    display: block;
+}
+.top-section .row{
+     margin: 0 auto;
+ }
+.top-section .row .col{
+    margin: 0 auto;
+}
+.top-section .description{
+    color: #777;
+}
+.leaderbord .navbar-fixed,.menu-smint{
+    z-index: 100000;
+    min-width: 765px;
+}
+.top-label-img{
+    width: 100%;
+}
+.good-label{
+    color: green;
+}
+.bad-label{
+    color: #ff0000;
+}
+.teacher-label{
+    color: #0000ff;
+    font-size: 9px;
+    padding: 0 1px;
+}
+.teacher-label.bad-label{
+    color: #ff0000;
+}
+.header-row > *{
+    padding: 0 !important;
+    position: relative;
+}
+#barLegend {
+    text-align: center;
+    font-weight: bold;
+}
+#barLegend span:first-child{
+    margin-left: 10px;
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    min-width: 10px;
+    min-height: 10px;
+    margin-right: 10px;
+}
+#barLegend span:last-child{
+    display: inline-block;
+    font-weight: bold;
+    line-height: 14px;
+}
+.label-wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+}
+.label-wrapper .label{
+    margin: 1px;
+}

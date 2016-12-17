@@ -1,0 +1,24 @@
+extends ../layout
+append content
+    div.box.admin-courses-index
+        div.box-header
+            h1.box-title #{title}
+            a.btn.btn-info.pull-right(href="/admin/groups/new") Добавити групу
+        div.box-body
+            table.table.table-bordered.table-hover.dataTable(role="grid")
+                thead
+                    tr.row
+                        th Назва
+                        th Спеціальність
+                        th Рік початку навчання
+                tbody
+                    - each group, i in groups
+                        tr.row
+                            th #{group.title}
+                            th
+                                if(group._speciality)
+                                    span #{group._speciality.title}
+                            th #{group.year_start}
+                            th
+                                div_
+                                    a(href='/admin/groups/#{group._id}/edit') Редагувати

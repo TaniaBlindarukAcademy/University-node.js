@@ -1,0 +1,35 @@
+extends ../layout
+block style
+    link(rel='stylesheet', href='/bower_components/AdminLTE/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/AdminLTE/dist/css/AdminLTE.min.css')
+    link(rel='stylesheet', href='/bower_components/AdminLTE/dist/css/skins/skin-blue.min.css')
+    link(rel='stylesheet', href='/stylesheets/admin/style.css')
+block header
+block body
+    block main-header
+        header.main-header
+    block aside
+        aside.main-sidebar
+            section.sidebar
+                ul.sidebar-menu
+                    li.header
+                        a(href="/admin/groups") Групи
+                    li.header
+                        a(href="/admin/specialties") Спеціальність
+                    li.header
+                        a(href="/admin/students") Студенти
+    div.content-wrapper
+        section.content
+            block content
+    div.main-footer
+        block main-footer
+            div.pull-right.hidden-xs Anything you want
+            strong All rights reserved.
+block footer
+append js
+    script(type='text/javascript' src="/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js")
+    script(type='text/javascript' src="/bower_components/AdminLTE/dist/js/app.min.js")
+
+
+
+

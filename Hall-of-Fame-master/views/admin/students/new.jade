@@ -1,0 +1,39 @@
+extends ../layout
+append content
+    div.box.box-info
+        div.box-header.with-border
+            h3.box-title Добавити нового студента
+        form#formAddCourse.form-horizontal(method="post",enctype="multipart/form-data",action="/admin/students/new")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputName") Ім’я
+                    div.col-sm-10
+                        input#inputName.form-control(type="text", name="name",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputPhoto") Фото
+                    div.col-sm-10
+                        input#inputPhoto.form-control(type="file", name="photo",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputHeadman") Староста?
+                    div.col-sm-10
+                        input#inputHeadman(type="checkbox", name="headman",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputN") Кількість Енок
+                    div.col-sm-10
+                        input#inputN.form-control(type="text", name="n",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputGroup") Група
+                    div.col-sm-10
+                        select#inputGroup.form-control( name="group")
+                            - each group, i in groups
+                                option(value='#{group._id}') #{group.title}
+                div.form-group
+                    label.col-sm-2.control-label(for="inputLink") Лінка
+                    div.col-sm-10
+                        input#inputLink.form-control(type="text", name="link",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") Чоловік?
+                    div.col-sm-10
+                        input#inputMale(type="checkbox", name="male",autocomplete="off")
+            div.box-footer
+                button#btnSubmit.btn.btn-primary.pull-right(type="submit") Створити групу

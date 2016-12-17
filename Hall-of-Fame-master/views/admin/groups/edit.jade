@@ -1,0 +1,28 @@
+extends ../layout
+append content
+    div.box.box-info
+        div.box-header.with-border
+            h3.box-title Редагувати групу
+        form#formAddCourse.form-horizontal(method="post",action="/admin/groups/#{group._id}/edit")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputTitle") Назва групи
+                    div.col-sm-10
+                        input#inputTitle.form-control(value="#{group.title}",type="text", name="title",autocomplete="off")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputStartYear") Рік вступу
+                    div.col-sm-10
+                        input#inputStartYear.form-control(value="#{group.year_start}",type="text", name="year_start",autocomplete="off")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputSpec") Спеціальність
+                    div.col-sm-10
+                        select#inputSpec.form-control( name="specialties")
+                            - each speciality, i in specialties
+                                if(speciality._id.equals(group._speciality))
+                                    option(value='#{speciality._id}',selected) #{speciality.title}
+                                else
+                                    option(value='#{speciality._id}') #{speciality.title}
+            div.box-footer
+                button#btnSubmit.btn.btn-primary.pull-right(type="submit") Зберегти зміни

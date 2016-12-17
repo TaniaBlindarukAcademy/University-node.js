@@ -1,0 +1,95 @@
+extends ../layout
+append content
+    div.box.box-info
+        div.box-header.with-border
+            h3.box-title Редагувати #{student.name}
+        form#formAddCourse.form-horizontal(method="post",enctype="multipart/form-data",action="/admin/students/#{student._id}/edit")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputName") Ім’я
+                    div.col-sm-10
+                        input#inputName.form-control(value='#{student.name}',type="text", name="name",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputPhoto") Фото
+                    div.col-sm-1
+                        img(src='/media/#{student.photo}',style='width:50px')
+                    div.col-sm-9
+                        input#inputPhoto.form-control(type="file", name="photo",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputHeadman") Староста?
+                    div.col-sm-10
+                        if(student.headman)
+                            input#inputHeadman(checked,type="checkbox", name="headman",autocomplete="off")
+                        else
+                            input#inputHeadman(type="checkbox", name="headman",autocomplete="off")
+
+                div.form-group
+                    label.col-sm-2.control-label(for="inputN") Кількість Енок
+                    div.col-sm-10
+                        input#inputN.form-control(value='#{student.n}',type="text", name="n",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputGroup") Група
+                    div.col-sm-10
+                        select#inputGroup.form-control( name="group")
+                            - each group, i in groups
+                                if(group._id.equals(student.group))
+                                    option(value='#{group._id}', selected) #{group.title}
+                                else
+                                    option(value='#{group._id}') #{group.title}
+                div.form-group
+                    label.col-sm-2.control-label(for="inputLink") Лінка
+                    div.col-sm-10
+                        input#inputLink.form-control(value='#{student.link}',type="text", name="link",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") Чоловік?
+                    div.col-sm-10
+                        if(student.male)
+                            input#inputMale(checked,type="checkbox", name="male",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="male",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputResponsible") Відповідальний?
+                    div.col-sm-10
+                        if(student.badges.responsible)
+                            input#inputMale(checked,type="checkbox", name="responsible",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="responsible",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") Талановитий?
+                    div.col-sm-10
+                        if(student.badges.talent)
+                            input#inputMale(checked,type="checkbox", name="talent",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="talent",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") positive?
+                    div.col-sm-10
+                        if(student.badges.positive)
+                            input#inputMale(checked,type="checkbox", name="positive",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="positive",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") charisma?
+                    div.col-sm-10
+                        if(student.badges.charisma)
+                            input#inputMale(checked,type="checkbox", name="charisma",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="charisma",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") more?
+                    div.col-sm-10
+                        if(student.badges.more)
+                            input#inputMale(checked,type="checkbox", name="more",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="more",autocomplete="off")
+                div.form-group
+                    label.col-sm-2.control-label(for="inputMale") arsehole?
+                    div.col-sm-10
+                        if(student.badges.arsehole)
+                            input#inputMale(checked,type="checkbox", name="arsehole",autocomplete="off")
+                        else
+                            input#inputMale(type="checkbox", name="arsehole",autocomplete="off")
+
+            div.box-footer
+                button#btnSubmit.btn.btn-primary.pull-right(type="submit") Редагувати студента
+                                 

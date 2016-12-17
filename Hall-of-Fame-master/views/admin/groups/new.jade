@@ -1,0 +1,26 @@
+extends ../layout
+append content
+    div.box.box-info
+        div.box-header.with-border
+            h3.box-title Добавити нову групу
+        form#formAddCourse.form-horizontal(method="post",action="/admin/groups/new")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputTitle") Назва групи
+                    div.col-sm-10
+                        input#inputTitle.form-control(type="text", name="title",autocomplete="off")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputStartYear") Рік вступу
+                    div.col-sm-10
+                        input#inputStartYear.form-control(type="text", name="year_start",autocomplete="off")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputGroup") Спеціальність
+                    div.col-sm-10
+                        select#inputGroup.form-control( name="specialties")
+                            - each speciality, i in specialties
+                                option(value='#{speciality._id}') #{speciality.title}
+
+            div.box-footer
+                button#btnSubmit.btn.btn-primary.pull-right(type="submit") Створити групу

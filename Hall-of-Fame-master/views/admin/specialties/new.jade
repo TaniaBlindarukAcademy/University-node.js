@@ -1,0 +1,14 @@
+extends ../layout
+append content
+    div.box.box-info
+        div.box-header.with-border
+            h3.box-title Добавити нову спеціальність
+        form#formAddCourse.form-horizontal(method="post",action="/admin/specialties/new")
+            div.box-body
+                div.form-group
+                    label.col-sm-2.control-label(for="inputTitle") Назва спеціальності
+                    div.col-sm-10
+                        input#inputTitle.form-control(type="text", name="title",autocomplete="off")
+            div.box-footer
+                button#btnSubmit.btn.btn-primary.pull-right(type="submit") Створити спеціальність
+

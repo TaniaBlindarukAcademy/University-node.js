@@ -1,0 +1,17 @@
+extends ../layout
+append style
+block body
+    div.login-box
+        div.login-logo Адмінка
+        div.login-box-body
+            p.login-box-msg Sign in to start your session
+            div.login-box-msg
+                form(action="/admin/login", method="post")
+                    div.form-group.has-feedback
+                        input.form-control(type="login",name="login",placeholder="Email")
+                        span.glyphicon.glyphicon-envelope.form-control-feedback
+                    div.form-group.has-feedback
+                        input.form-control(type="password",name="password",placeholder="Password")
+                        span.glyphicon.glyphicon-lock.form-control-feedback
+                    div.form-group
+                        button.btn.btn-primary.btn-block.btn-flat.right(type="submit") Sign In

@@ -1,0 +1,34 @@
+extends ../layout
+append content
+    div.box.admin-courses-index
+        div.box-header
+            h1.box-title #{title}
+            a.btn.btn-info.pull-right(href="/admin/students/new") Добавити групу
+        div.box-body
+            table.table.table-bordered.table-hover.dataTable(role="grid")
+                thead
+                    tr.row
+                        th Фото
+                        th Ім’я
+                        th Група
+                        th Відзнаки
+                        th Лінка
+                tbody
+                    - each student, i in students
+                        tr.row
+                            th
+                                img(src='/media/#{student.photo}',style='width:50px')
+                            th #{student.name}
+                            th #{student.group.title}
+                            th #{student.link}
+                            th
+                                span Відповідальність #{student.badges.responsible}
+                                span talent #{student.badges.talent}
+                                span positive #{student.badges.positive}
+                                span charisma #{student.badges.charisma}
+                                span more #{student.badges.more}
+                                span arsehole #{student.badges.arsehole}
+
+                            th
+                                div
+                                    a(href='/admin/students/#{student._id}/edit') Редагувати

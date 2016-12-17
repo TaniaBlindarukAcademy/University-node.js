@@ -1,0 +1,19 @@
+extends ../layout
+append content
+    div.box.admin-courses-index
+        div.box-header
+            h1.box-title #{title}
+            a.btn.btn-info.pull-right(href="/admin/specialties/new") Добавити спеціальність
+        div.box-body
+            table.table.table-bordered.table-hover.dataTable(role="grid")
+                thead
+                    tr.row
+                        th Назва
+                tbody
+                    - each speciality, i in specialties
+                        tr.row
+                            th #{speciality.title}
+                            th #{speciality.year_start}
+                            th
+                                div
+                                    a(href='/admin/speciality/#{speciality._id}/edit') Редагувати
